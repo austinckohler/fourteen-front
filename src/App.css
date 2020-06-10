@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #696969ab;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.favorites-container {
+  height: 50vw;
+  background: #88793796;
+  color: aqua;
+}
