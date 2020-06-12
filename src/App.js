@@ -22,14 +22,21 @@ export class App extends Component {
   };
   render() {
     return (
-      <div>
-        <h1>FourteeneReady?</h1>
+      <>
+        <div className="hero">
+          <div className="call-to-action">
+            {" "}
+            <h1 className="title">FourteeneReady?</h1>
+            <p>Want to find see what 14ers you've done? What you do need? </p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
         <Favorites favorites={this.state.favorites} />
         <WeatherContainer
           weather={this.state.weather}
           addToFav={this.addToFav}
         />
-      </div>
+      </>
     );
   }
 }
