@@ -36,6 +36,11 @@ body {
   padding: 1rem;
   font-weight: 900;
   color: #f5cebbea;
+  transition: transform 1s;
+}
+
+.call-to-action > a:hover {
+  transform: scale(1.05);
 }
 
 .hero {
