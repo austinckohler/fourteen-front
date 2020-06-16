@@ -25,7 +25,7 @@ export default function FadeMenu() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        Navigate
+        Explore
       </Button>
       <Menu
         id="fade-menu"
@@ -49,6 +49,7 @@ export default function FadeMenu() {
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Link
+            href="#"
             component="button"
             variant="body2"
             onClick={() => {
@@ -57,7 +58,6 @@ export default function FadeMenu() {
           >
             About
           </Link>
-          {/* <a href="#">About</a> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Link

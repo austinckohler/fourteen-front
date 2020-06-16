@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "./components/NavBar";
+import NavBar from "./Authenticate/NavBar";
 import "./App.css";
 import Peaks from "./components/Peaks";
 import PeaksCard from "./components/PeaksCard";
@@ -27,16 +27,17 @@ export class App extends Component {
   render() {
     return (
       <>
-        <SignInSide />
         <NavBar />
-        <div className="hero">
+        <SignInSide title={<h1 className="title">FourteeneReady?</h1>} />
+
+        {/* <div className="hero">
           <div className="call-to-action">
             {" "}
-            <h1 className="title">FourteeneReady?</h1>
+           
             <p>Want to find see what 14ers you've done? What you do need? </p>
             <a href="#">Learn More</a>
           </div>
-        </div>
+        </div> */}
         <Peaks peaks={this.state.peaks} />
         <PeaksCard />
         {/* <p>
