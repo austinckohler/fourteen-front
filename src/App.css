@@ -78,3 +78,10 @@ body {
   list-style: none;
   padding: 0 1rem;
 }
+
+
+#root > div.MuiContainer-root > div > div {
+  padding: 1rem;
+  margin: 1rem;
+  width: 33.33%;
+}

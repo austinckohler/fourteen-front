@@ -1,22 +1,3 @@
-// import React from "react";
-// import Container from "./Container";
-
-// function PeaksCard({ name, range, rank, elevation, lat, long, town, image }) {
-//   return (
-//     <div className="cards">
-//       <h2>{name}</h2>
-//       <h3>{range}</h3>
-//       <img src={image} alt={name} className="mountain-photos" />
-//       <ul className="mountain-list">
-//         <li>Elevation: {elevation}</li>
-//         <li>
-//           Latitude and Longitude: ~{lat}, ~{long}
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// }
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -26,14 +7,12 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,40 +32,39 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: "rotate(180deg)",
   },
-  avatar: {
-    backgroundColor: red[400],
-  },
 }));
 
 function PeaksCard({ name, range, rank, elevation, lat, long, town, image }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const elevationValue = JSON.stringify(elevation);
-  console.log(elevationValue);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+      <CardHeader title={name} subheader={range} />
+      <CardMedia
+        className={classes.media}
+        image={image}
         title={name}
-        subheader={range}
+        align="center"
       />
-      <CardMedia className={classes.media} image={image} title={name} />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          align="center"
+        >
           {elevationValue} ft
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon>{/* <Link >Add to Favorites</Link> */}</FavoriteIcon>
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -101,12 +79,22 @@ function PeaksCard({ name, range, rank, elevation, lat, long, town, image }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Latitude:</Typography>
-          <Typography paragraph>{lat}</Typography>
-          <Typography paragraph>Longitude:</Typography>
-          <Typography paragraph>{long}</Typography>
-          <Typography paragraph>Town:</Typography>
-          <Typography>{town}</Typography>
+          <Typography ul align="left"></Typography>
+          <Typography li align="left">
+            Rank by elevation: {rank}
+          </Typography>
+          <Typography li align="left">
+            Latitude: approx {lat}
+          </Typography>
+          <Typography li align="left">
+            Longitude: approx {long}
+          </Typography>
+          <Typography li align="left">
+            Town/Towns near {name}:
+          </Typography>
+          <Typography li align="left">
+            {town}
+          </Typography>
         </CardContent>
       </Collapse>
     </Card>

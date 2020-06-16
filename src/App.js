@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "./Authenticate/NavBar";
 import "./App.css";
-import Peaks from "./components/Peaks";
-import PeaksCard from "./components/PeaksCard";
-// import { Container } from "@material-ui/core";
+import Peaks from "./components/PeaksContainer";
+
 import SignInSide from "./Authenticate/SignInSide";
 
 export class App extends Component {
@@ -29,25 +28,7 @@ export class App extends Component {
       <>
         <NavBar />
         <SignInSide title={<h1 className="title">FourteeneReady?</h1>} />
-
-        {/* <div className="hero">
-          <div className="call-to-action">
-            {" "}
-           
-            <p>Want to find see what 14ers you've done? What you do need? </p>
-            <a href="#">Learn More</a>
-          </div>
-        </div> */}
         <Peaks peaks={this.state.peaks} />
-        <PeaksCard />
-        {/* <p>
-          {.map((peak) => [
-            peak.name,
-            peak.elevation,
-            peak.long,
-            <img src={peak.image} className="mountain-photos" />,
-          ])}
-        </p> */}
       </>
     );
   }
