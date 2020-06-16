@@ -1,28 +1,35 @@
 import React, { Component } from "react";
+import NavBar from "./components/NavBar";
 import "./App.css";
-import ApiKeys from "./ApiKeys";
-import WeatherContainer from "./WeatherContainer";
-import Favorites from "./Favorites";
+import Peaks from "./components/Peaks";
+import PeaksCard from "./components/PeaksCard";
+import { Container } from "@material-ui/core";
+// import ApiKeys from "./ApiKeys";
+// import WeatherContainer from "./WeatherContainer";
+// import Favorites from "./Favorites";
 
 export class App extends Component {
   state = {
-    weather: [],
-    favorites: [],
+    peaks: [],
   };
 
   componentDidMount() {
-    fetch(`${ApiKeys.base}weather?q=ubud&appid=${ApiKeys.key}`)
+    fetch("http://localhost:3000/peaks")
       .then((response) => response.json())
-      .then((weather) => this.setState({ weather: weather.coord }));
+      .then((peaks) => this.setState({ peaks }));
   }
 
-  addToFav = (weather) => {
-    if (!this.state.favorites.find((coord) => coord.id === weather.id))
-      this.setState({ favorites: [...this.state.favorites, weather] });
-  };
+  photo() {
+    console.log("public/photos/antero.jpg");
+  }
+  // addToFav = (weather) => {
+  //   if (!this.state.favorites.find((coord) => coord.id === weather.id))
+  //     this.setState({ favorites: [...this.state.favorites, weather] });
+  // };
   render() {
     return (
       <>
+        <NavBar />
         <div className="hero">
           <div className="call-to-action">
             {" "}
@@ -31,11 +38,16 @@ export class App extends Component {
             <a href="#">Learn More</a>
           </div>
         </div>
-        <Favorites favorites={this.state.favorites} />
-        <WeatherContainer
-          weather={this.state.weather}
-          addToFav={this.addToFav}
-        />
+        <Peaks peaks={this.state.peaks} />
+        <PeaksCard />
+        {/* <p>
+          {.map((peak) => [
+            peak.name,
+            peak.elevation,
+            peak.long,
+            <img src={peak.image} className="mountain-photos" />,
+          ])}
+        </p> */}
       </>
     );
   }
