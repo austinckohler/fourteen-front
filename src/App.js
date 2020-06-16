@@ -3,10 +3,8 @@ import NavBar from "./components/NavBar";
 import "./App.css";
 import Peaks from "./components/Peaks";
 import PeaksCard from "./components/PeaksCard";
-import { Container } from "@material-ui/core";
-// import ApiKeys from "./ApiKeys";
-// import WeatherContainer from "./WeatherContainer";
-// import Favorites from "./Favorites";
+// import { Container } from "@material-ui/core";
+import SignInSide from "./Authenticate/SignInSide";
 
 export class App extends Component {
   state = {
@@ -29,6 +27,7 @@ export class App extends Component {
   render() {
     return (
       <>
+        <SignInSide />
         <NavBar />
         <div className="hero">
           <div className="call-to-action">
