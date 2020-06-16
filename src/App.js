@@ -16,9 +16,6 @@ export class App extends Component {
       .then((peaks) => this.setState({ peaks }));
   }
 
-  photo() {
-    console.log("public/photos/antero.jpg");
-  }
   // addToFav = (weather) => {
   //   if (!this.state.favorites.find((coord) => coord.id === weather.id))
   //     this.setState({ favorites: [...this.state.favorites, weather] });
