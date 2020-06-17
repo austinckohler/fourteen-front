@@ -1,18 +1,22 @@
 import React from "react";
 
-function Supplies({ category, item }) {
+function Supplies({ id, supply, category, item, markComplete, delSupply }) {
+  console.log(supply.completed);
   return (
     <>
-      <ul>
-        <li>
-          <h2>{category}</h2>
-        </li>
-        <li>
-          <p>{item}</p>
-        </li>
-      </ul>
+      <input type="checkbox" onChange={() => markComplete} />
+      {console.log(markComplete)}
+      {item} | {category}
+      <button onClick={delSupply}>Delete</button>
+      <p style={supplyCompletedStyle()}>
+        {item} | {category}
+      </p>
     </>
   );
-}
 
+  function supplyCompletedStyle(id) {
+    console.log(id);
+    return { textDecoration: supply.completed ? "line-through" : "none" };
+  }
+}
 export default Supplies;

@@ -27,6 +27,32 @@ export class App extends Component {
       .then((response) => response.json())
       .then((peaks) => this.setState({ peaks }));
   }
+  //toggle completed
+  markComplete = (id) => {
+    this.setState({
+      supplies: this.state.supplies.map((supply) => {
+        if (supply.id === id) {
+          supply.completed = !supply.completed;
+        }
+        return supply;
+      }),
+    });
+  };
+  //deletes supply
+  delSupply = (id) => {
+    this.setState({
+      supplies: [...this.state.supplies.filter((supply) => supply.id !== id)],
+    });
+  };
+  //add supply
+  // addSupply = (category, item) => {
+  //   const newSupply = {
+  //     id,
+  //     title,
+  //     completed: false,
+  //   };
+  //   this.setState({ supplies: [...this.state.supplies, newSupply] });
+  // };
 
   // addToFav = (weather) => {
   //   if (!this.state.favorites.find((coord) => coord.id === weather.id))
@@ -38,7 +64,11 @@ export class App extends Component {
         <NavBar />
         <SignInSide title={<h1 className="title">FourteeneReady?</h1>} />
         <Peaks peaks={this.state.peaks} />
-        <Login supplies={this.state.supplies} />
+        <Login
+          supplies={this.state.supplies}
+          markComplete={this.markComplete}
+          delsupply={this.delSupply}
+        />
       </>
     );
   }
