@@ -61,9 +61,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide() {
-  //   const [username, setUsername] = useState("");
-  //   const [password, setPassword] = useState("");
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("un", username);
+    console.log("pw", password);
+
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(username, password),
+    })
+      .then((response) => response)
+      .then(console.log);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -83,7 +99,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
 
-          <form className={classes.form} noValidate onSubmit={handleSubmit()}>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -94,6 +110,8 @@ export default function SignInSide() {
               name="username"
               autoComplete="username"
               autoFocus
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -105,6 +123,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -144,16 +164,16 @@ export default function SignInSide() {
     </Grid>
   );
 
-  function handleSubmit() {
-    return (event) => event.preventDefault();
-    // setUsername(username);
-    // setPassword(password);
-    // fetch("http://localhost:3000/users", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({ username, password }),
-    // });
-  }
+  //   function handleSubmit() {
+  //     return (event) => event.preventDefault();
+  // setUsername(username);
+  // setPassword(password);
+  // fetch("http://localhost:3000/users", {
+  //   method: "POST",
+  //   headers: {
+  //     "content-type": "application/json",
+  //   },
+  //   body: JSON.stringify({ username, password }),
+  // });
+  //   }
 }
