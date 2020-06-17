@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -61,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide() {
+  //   const [username, setUsername] = useState("");
+  //   const [password, setPassword] = useState("");
   const classes = useStyles();
 
   return (
@@ -81,7 +83,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
 
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit()}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -124,7 +126,11 @@ export default function SignInSide() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  href="#"
+                  variant="body2"
+                  // onChange={}
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -137,4 +143,17 @@ export default function SignInSide() {
       </Grid>
     </Grid>
   );
+
+  function handleSubmit() {
+    return (event) => event.preventDefault();
+    // setUsername(username);
+    // setPassword(password);
+    // fetch("http://localhost:3000/users", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ username, password }),
+    // });
+  }
 }
