@@ -60,6 +60,13 @@ body {
   justify-content: space-evenly;
 }
 
+.supplies-container {
+  width: 95%;
+  height: 100%;
+  margin: auto;
+  justify-content: space-evenly;
+}
+
 .cards {
   width: 33.33%;
   padding: 1rem;
@@ -79,9 +86,16 @@ body {
   padding: 0 1rem;
 }
 
-
 #root > div.MuiContainer-root > div > div {
   padding: 1rem;
   margin: 1rem;
   width: 33.33%;
+}
+
+.supply-items {
+  line-height: 1rem;
+}
+
+.item-divider {
+  border-bottom: 1px dashed #696969ab;
 }

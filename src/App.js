@@ -4,7 +4,8 @@ import "./App.css";
 import Peaks from "./components/PeaksContainer";
 
 import SignInSide from "./Authenticate/SignInSide";
-import Login from "./components/Login";
+import SuppliesContainer from "./components/SuppliesContainer";
+import AddSupply from "./components/AddSupply";
 
 export class App extends Component {
   state = {
@@ -28,7 +29,7 @@ export class App extends Component {
       .then((peaks) => this.setState({ peaks }));
   }
   //toggle completed
-  markComplete = (id) => {
+  markComplete = (event, id) => {
     this.setState({
       supplies: this.state.supplies.map((supply) => {
         if (supply.id === id) {
@@ -39,20 +40,23 @@ export class App extends Component {
     });
   };
   //deletes supply
-  delSupply = (id) => {
+  delSupply = (event, id) => {
     this.setState({
       supplies: [...this.state.supplies.filter((supply) => supply.id !== id)],
     });
+    fetch(`http://localhost:3000/supplies/${id}`, {
+      method: "DELETE",
+    });
   };
   //add supply
-  // addSupply = (category, item) => {
-  //   const newSupply = {
-  //     id,
-  //     title,
-  //     completed: false,
-  //   };
-  //   this.setState({ supplies: [...this.state.supplies, newSupply] });
-  // };
+  addSupply = (category, item) => {
+    const newSupply = {
+      item,
+      category,
+      completed: false,
+    };
+    this.setState({ supplies: [...this.state.supplies, newSupply] });
+  };
 
   // addToFav = (weather) => {
   //   if (!this.state.favorites.find((coord) => coord.id === weather.id))
@@ -64,10 +68,11 @@ export class App extends Component {
         <NavBar />
         <SignInSide title={<h1 className="title">FourteeneReady?</h1>} />
         <Peaks peaks={this.state.peaks} />
-        <Login
+        <AddSupply addSupply={this.addSupply} />
+        <SuppliesContainer
           supplies={this.state.supplies}
           markComplete={this.markComplete}
-          delsupply={this.delSupply}
+          delSupply={this.delSupply}
         />
       </>
     );
